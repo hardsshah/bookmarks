@@ -1,0 +1,267 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.3deb1ubuntu1.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Apr 19, 2009 at 05:13 PM
+-- Server version: 5.0.51
+-- PHP Version: 5.2.4-2ubuntu5.5
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `cake_bookmarks`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acos`
+--
+
+CREATE TABLE IF NOT EXISTS `acos` (
+  `id` int(10) NOT NULL auto_increment,
+  `parent_id` int(10) default NULL,
+  `model` varchar(255) default NULL,
+  `foreign_key` int(10) default NULL,
+  `alias` varchar(255) default NULL,
+  `lft` int(10) default NULL,
+  `rght` int(10) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+
+--
+-- Dumping data for table `acos`
+--
+
+INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
+(1, NULL, NULL, NULL, 'controllers', 1, 66),
+(2, 1, NULL, NULL, 'Pages', 2, 5),
+(3, 2, NULL, NULL, 'display', 3, 4),
+(4, 1, NULL, NULL, 'Users', 6, 21),
+(5, 4, NULL, NULL, 'login', 7, 8),
+(6, 4, NULL, NULL, 'logout', 9, 10),
+(7, 4, NULL, NULL, 'index', 11, 12),
+(8, 4, NULL, NULL, 'view', 13, 14),
+(9, 4, NULL, NULL, 'add', 15, 16),
+(10, 4, NULL, NULL, 'edit', 17, 18),
+(11, 4, NULL, NULL, 'delete', 19, 20),
+(12, 1, NULL, NULL, 'Roles', 22, 33),
+(13, 12, NULL, NULL, 'index', 23, 24),
+(14, 12, NULL, NULL, 'view', 25, 26),
+(15, 12, NULL, NULL, 'add', 27, 28),
+(16, 12, NULL, NULL, 'edit', 29, 30),
+(17, 12, NULL, NULL, 'delete', 31, 32),
+(18, 1, NULL, NULL, 'Links', 34, 45),
+(19, 18, NULL, NULL, 'index', 35, 36),
+(20, 18, NULL, NULL, 'view', 37, 38),
+(21, 18, NULL, NULL, 'add', 39, 40),
+(22, 18, NULL, NULL, 'edit', 41, 42),
+(23, 18, NULL, NULL, 'delete', 43, 44),
+(24, 1, NULL, NULL, 'Home', 46, 49),
+(25, 24, NULL, NULL, 'index', 47, 48),
+(26, 1, NULL, NULL, 'Cron', 50, 53),
+(27, 26, NULL, NULL, 'run', 51, 52),
+(28, 1, NULL, NULL, 'LinkCategories', 54, 65),
+(29, 28, NULL, NULL, 'index', 55, 56),
+(30, 28, NULL, NULL, 'view', 57, 58),
+(31, 28, NULL, NULL, 'add', 59, 60),
+(32, 28, NULL, NULL, 'edit', 61, 62),
+(33, 28, NULL, NULL, 'delete', 63, 64);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aros`
+--
+
+CREATE TABLE IF NOT EXISTS `aros` (
+  `id` int(10) NOT NULL auto_increment,
+  `parent_id` int(10) default NULL,
+  `model` varchar(255) default NULL,
+  `foreign_key` int(10) default NULL,
+  `alias` varchar(255) default NULL,
+  `lft` int(10) default NULL,
+  `rght` int(10) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `aros`
+--
+
+INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
+(1, NULL, 'Role', 1, NULL, 1, 4),
+(3, 1, 'User', 3, NULL, 2, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aros_acos`
+--
+
+CREATE TABLE IF NOT EXISTS `aros_acos` (
+  `id` int(10) NOT NULL auto_increment,
+  `aro_id` int(10) NOT NULL,
+  `aco_id` int(10) NOT NULL,
+  `_create` varchar(2) NOT NULL default '0',
+  `_read` varchar(2) NOT NULL default '0',
+  `_update` varchar(2) NOT NULL default '0',
+  `_delete` varchar(2) NOT NULL default '0',
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `ARO_ACO_KEY` (`aro_id`,`aco_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `aros_acos`
+--
+
+INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
+(1, 1, 1, '1', '1', '1', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `links`
+--
+
+CREATE TABLE IF NOT EXISTS `links` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `link_category_id` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
+
+--
+-- Dumping data for table `links`
+--
+
+INSERT INTO `links` (`id`, `link_category_id`, `name`, `url`, `created`, `modified`) VALUES
+(2, 3, '[ws] Color Scheme Designer', 'http://colorschemedesigner.com/', '2009-03-08 22:52:05', '2009-03-08 22:52:05'),
+(3, 3, 'ColorToy 2.0 - The Flash Color Scheme Generator', 'http://www.defencemechanism.com/color/', '2009-03-08 22:52:33', '2009-03-08 22:52:33'),
+(4, 3, 'Color Blender', 'http://meyerweb.com/eric/tools/color-blend/', '2009-03-08 22:52:54', '2009-03-08 22:52:54'),
+(5, 3, '4096 Color Wheel Version 2.1', 'http://ficml.org/jemimap/style/color/wheel.html', '2009-03-08 22:53:39', '2009-03-08 22:54:22'),
+(6, 21, 'Wildflower - CakePHP CMS', 'http://wf.klevo.sk/', '2009-03-08 22:55:26', '2009-04-19 13:25:54'),
+(8, 18, 'cufÃ³n - fonts for the people', 'http://cufon.shoqolate.com/generate/', '2009-03-08 22:57:08', '2009-04-19 13:29:38'),
+(9, 21, 'Free Site Search Engine PHP Scripts', 'http://www.thefreecountry.com/php/site-search-engine-scripts.shtml', '2009-03-08 22:58:20', '2009-04-19 13:27:03'),
+(10, 21, 'Sphider-plus', 'http://sourceforge.net/projects/sphider-plus/', '2009-03-08 22:58:44', '2009-04-19 13:28:39'),
+(11, 4, 'GimPhoto - free Photoshop alternative for photo and image editor', 'http://www.gimphoto.com/', '2009-03-08 23:00:33', '2009-03-08 23:00:33'),
+(12, 4, 'VirtualBox', 'http://www.virtualbox.org/', '2009-03-08 23:01:05', '2009-03-08 23:01:05'),
+(13, 7, 'WordPress Review Site Plugin', 'http://www.wpreviewsite.com/', '2009-03-08 23:20:46', '2009-03-08 23:20:46'),
+(14, 21, 'pChart | a PHP Charting library', 'http://pchart.sourceforge.net/', '2009-03-08 23:21:38', '2009-04-19 13:25:05'),
+(15, 4, 'Pencil Project', 'http://www.evolus.vn/Pencil/Home.html', '2009-03-08 23:22:14', '2009-03-08 23:22:14'),
+(16, 18, 'Wufoo - Free Contact Forms & Online Surveys', 'http://wufoo.com/', '2009-03-08 23:22:43', '2009-04-19 13:27:49'),
+(17, 18, 'Online time tracking, task management and project management', 'http://www.myintervals.com/tour.php', '2009-03-08 23:23:37', '2009-04-19 13:30:38'),
+(18, 18, 'Tiled backgrounds designer', 'http://bgpatterns.com/', '2009-03-08 23:23:59', '2009-04-19 13:27:23'),
+(19, 4, 'Chevereto, Free image hosting script', 'http://chevereto.com/', '2009-03-08 23:24:29', '2009-03-08 23:24:29'),
+(20, 18, 'Tynt - Tracer', 'http://www.tynt.com/', '2009-03-08 23:24:54', '2009-04-19 13:29:21'),
+(21, 15, 'Xenocode', 'http://www.xenocode.com/browsers/', '2009-03-08 23:25:17', '2009-03-15 16:04:04'),
+(46, 5, 'YUI Compressor', 'http://developer.yahoo.com/yui/compressor/', '2009-03-19 10:46:11', '2009-03-19 10:46:11'),
+(22, 18, 'SEOintelligence', 'http://www.seointelligence.com/', '2009-03-08 23:26:38', '2009-04-19 13:31:52'),
+(23, 4, 'JSLint, The JavaScript Verifier', 'http://www.jslint.com/', '2009-03-08 23:27:02', '2009-03-08 23:27:02'),
+(24, 6, 'DataTables', 'http://datatables.net/', '2009-03-08 23:27:25', '2009-03-08 23:27:25'),
+(25, 18, '.htaccess Editor', 'http://www.htaccesseditor.com/en.shtml', '2009-03-08 23:29:05', '2009-03-08 23:29:05'),
+(26, 4, 'Sunday Morning : jQuery + Google Translation', 'http://sundaymorning.jaysalvat.com/', '2009-03-08 23:30:09', '2009-03-08 23:30:09'),
+(27, 5, 'smush.it!', 'http://smushit.com/', '2009-03-08 23:30:36', '2009-03-08 23:30:36'),
+(28, 5, 'CSS Compressor', 'http://www.cssdrive.com/index.php/main/csscompressor/', '2009-03-08 23:30:54', '2009-03-08 23:30:54'),
+(29, 5, 'JS Minifier', 'http://fmarcia.info/jsmin/test.html', '2009-03-08 23:31:19', '2009-03-08 23:31:19'),
+(30, 9, 'SQuiD Bookmarklet', 'javascript:(function(){var%20s=document.createElement(''scr''+''ipt'');s.type=''text/javascript'';s.src=''http://tools.searchreturn.com/srt/srt-debug.js?''+(new%20Date().getTime());document.getElementsByTagName(''head'')[0].appendChild(s);}());', '2009-03-08 23:33:08', '2009-03-08 23:33:08'),
+(31, 9, 'YAML Debug', 'javascript:(function()%7Bvar%20s%20=%20document.createElement(%27script%27);%20s.setAttribute(%27type%27,%20%27text/javascript%27);%20s.setAttribute(%27class%27,%20%27ydebug%27);%20s.setAttribute(%27src%27,%27http://debug.yaml.de/debugger.js%27);%20docume', '2009-03-08 23:33:30', '2009-03-08 23:33:30'),
+(35, 6, 'Captify', 'http://masterfidgeter.com/projects/captify/', '2009-03-08 23:35:23', '2009-03-08 23:35:23'),
+(36, 6, 'Canvas Tooltips With jQuery: BeautyTips', 'http://www.webresourcesdepot.com/canvas-tooltips-with-jquery-beautytips/', '2009-03-08 23:35:44', '2009-03-08 23:35:44'),
+(37, 6, 'ScrollTo', 'http://plugins.jquery.com/project/ScrollTo', '2009-03-08 23:36:10', '2009-03-08 23:36:10'),
+(38, 8, 'Free Photoshop Brushes at Brusheezy!', 'http://www.brusheezy.com/brushes', '2009-03-08 23:36:55', '2009-03-08 23:36:55'),
+(39, 1, 'Askimet behavior', 'http://bakery.cakephp.org/articles/view/an-akismet-behavior', '2009-03-09 20:41:28', '2009-03-09 20:41:28'),
+(40, 18, 'px to em', 'http://pxtoem.com/', '2009-03-12 20:50:30', '2009-03-12 20:50:30'),
+(41, 19, 'Splashyfish', 'http://splashyfish.com/icons/', '2009-03-13 21:55:51', '2009-03-15 16:10:28'),
+(42, 19, 'famfamfam', 'http://www.famfamfam.com/', '2009-03-13 21:56:56', '2009-03-13 21:56:56'),
+(43, 20, 'Prad', 'http://www.prad.de/en/index.html', '2009-03-15 16:00:13', '2009-03-15 16:00:13'),
+(44, 20, 'TFT Central', 'http://www.tftcentral.co.uk/', '2009-03-15 16:00:47', '2009-03-15 16:00:47'),
+(45, 15, 'Browsershots', 'http://browsershots.org/', '2009-03-15 16:03:36', '2009-03-15 16:03:36'),
+(47, 21, 'PHP Thumbnail generator', 'http://phpthumb.sourceforge.net/', '2009-04-18 13:04:07', '2009-04-19 13:25:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `link_categories`
+--
+
+CREATE TABLE IF NOT EXISTS `link_categories` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `name` varchar(255) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+
+--
+-- Dumping data for table `link_categories`
+--
+
+INSERT INTO `link_categories` (`id`, `name`, `created`, `modified`) VALUES
+(1, 'CakePHP', '2009-03-08 21:30:33', '2009-03-08 21:30:33'),
+(3, 'Color scheme generators', '2009-03-08 21:31:24', '2009-03-08 21:31:24'),
+(4, 'Projects', '2009-03-08 21:31:34', '2009-03-08 21:31:34'),
+(5, 'Compressors', '2009-03-08 21:31:42', '2009-03-08 21:31:42'),
+(6, 'jQuery', '2009-03-08 21:31:56', '2009-03-08 21:31:56'),
+(7, 'Wordpress', '2009-03-08 21:32:08', '2009-03-08 21:32:08'),
+(8, 'Photoshop', '2009-03-08 21:32:14', '2009-03-08 21:32:14'),
+(9, 'Bookmarklets', '2009-03-08 21:32:23', '2009-03-08 21:32:23'),
+(15, 'Browser testers', '2009-03-08 22:53:18', '2009-03-08 22:53:18'),
+(21, 'PHP Projects', '2009-04-19 13:24:44', '2009-04-19 13:24:44'),
+(18, 'Hosted tools', '2009-03-08 23:28:45', '2009-03-08 23:28:45'),
+(19, 'Icons', '2009-03-13 21:55:22', '2009-03-13 21:55:22'),
+(20, 'Monitors', '2009-03-15 15:59:30', '2009-03-15 15:59:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(100) default NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `created`, `modified`) VALUES
+(1, 'Admin', '2009-03-09 14:28:05', '2009-03-09 14:28:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL auto_increment,
+  `username` varchar(40) default NULL,
+  `email` varchar(255) default NULL,
+  `password` varchar(40) default NULL,
+  `role_id` int(11) NOT NULL,
+  `first_name` varchar(40) default NULL,
+  `last_name` varchar(40) default NULL,
+  `active` tinyint(1) NOT NULL default '0',
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `last_login` datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `username` (`username`,`email`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `role_id`, `first_name`, `last_name`, `active`, `created`, `modified`, `last_login`) VALUES
+(3, 'admin', 'user@example.com', 'bf1569e0b6f5e02bdf1153e51d6b11d0cc4680b5', 1, 'admin', 'admin', 1, '2009-03-09 14:32:40', '2009-03-09 14:32:40', '0000-00-00 00:00:00');
